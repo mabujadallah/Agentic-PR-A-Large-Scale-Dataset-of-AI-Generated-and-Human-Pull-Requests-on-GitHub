@@ -27,7 +27,6 @@ Change size (median):
 
 PR description length (median words):  APR: 142   HPR: 85
   -> Figure saved: results\report_figures\rq1_change_size.png
-  -> Figure saved: results\report_figures\rq1_change_size.png
 
 ======================================================================
   RQ2: To what extent are Agent fix PRs rejected?
@@ -65,10 +64,14 @@ Revised PRs (>1 commit):
 
   -> Figure saved: results\report_figures\rq3_revision_commits.png
 
-Revision change size (median, revised PRs only):
-  rev_files_changed          APR:        2   HPR:        2
-  rev_lines_added            APR:       18   HPR:       10
-  rev_lines_deleted          APR:       10   HPR:        6
+Revision effort (median, revised PRs only):
+  Metric (2) - Files changed in revisions:
+    APR: 2   HPR: 2
+  Metric (3) - Lines added/deleted in revisions:
+    rev_lines_added            APR:       18   HPR:       10
+    rev_lines_deleted          APR:       10   HPR:        6
+  Metric (4) - % code modification vs initial submission:
+    APR: 79.6%   HPR: 81.4%
   -> Figure saved: results\report_figures\rq3_revision_change_size.png
 
 ======================================================================

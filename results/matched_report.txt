@@ -1,0 +1,118 @@
+
+======================================================================
+  Dataset Overview (Matched Closed Fix PRs)
+======================================================================
+Date range         : 2024-12-01 to 2026-02-28
+Total closed fix PRs : 93,914
+  Agent fix PRs      : 46,957
+  Human fix PRs      : 46,957  (randomly sampled to match agent count)
+Repositories       : 1,499
+Total commits      : 236,451
+Unique committers  : 11,567
+Random seed        : 42
+
+Agent fix PR breakdown:
+  Cursor                 20,117
+  Claude_Code            16,700
+  Copilot                 7,955
+  Devin                   2,185
+
+======================================================================
+  RQ1: How do Agent fix PRs differ from Human fix PRs in change size?
+======================================================================
+
+Change size (median):
+  files_changed         APR:        2   HPR:        2
+  lines_added           APR:       27   HPR:       20
+  lines_deleted         APR:       10   HPR:        7
+
+PR description length (median words):  APR: 139   HPR: 82
+  -> Figure saved: results\matched_report_figures\rq1_change_size.png
+
+======================================================================
+  RQ2: To what extent are Agent fix PRs rejected?
+======================================================================
+Agent PRs  : 38,464 / 46,957 merged  = 81.9%
+Human PRs  : 39,977 / 46,957 merged  = 85.1%
+Chi-squared test: chi2=176.90, p=0.0000
+  Statistically significant at alpha=0.05
+
+Merge rate by agent tool:
+  Claude_Code           14,357 / 16,700  = 86.0%
+  Copilot                5,059 /  7,955  = 63.6%
+  Cursor                17,987 / 20,117  = 89.4%
+  Devin                  1,061 /  2,185  = 48.6%
+
+  -> Figure saved: results\matched_report_figures\rq2_merge_rate.png
+
+Agent PRs — median time to merge: 1.42 hours
+
+Human PRs — median time to merge: 5.41 hours
+  -> Figure saved: results\matched_report_figures\rq2_merge_rate_by_agent.png
+
+======================================================================
+  RQ3: What proportion of fix PRs are accepted without revisions?
+======================================================================
+Merged without revision (single commit):
+  Agent PRs : 13,599 / 27,832 = 48.9%
+  Human PRs : 14,477 / 29,109 = 49.7%
+
+Revised PRs (>1 commit):
+  Agent PRs : 14,233  median commits: 3
+  Human PRs : 14,632  median commits: 3
+  Mann-Whitney U: U=101961267, p=0.0016
+  Statistically significant at alpha=0.05
+
+  -> Figure saved: results\matched_report_figures\rq3_revision_commits.png
+
+Revision effort (median, revised PRs only):
+  Metric (2) - Files changed in revisions:
+    APR: 2   HPR: 2
+  Metric (3) - Lines added/deleted in revisions:
+    rev_lines_added            APR:       18   HPR:       10
+    rev_lines_deleted          APR:       10   HPR:        6
+  Metric (4) - % code modification vs initial submission:
+    APR: 79.6%   HPR: 81.8%
+  -> Figure saved: results\matched_report_figures\rq3_revision_change_size.png
+
+======================================================================
+  Additional Statistics
+======================================================================
+PR state breakdown:
+  Agent:
+    closed         46,957
+  Human:
+    closed         46,957
+
+Monthly PR volume:
+Month           Agent    Human    Total
+----------------------------------------
+2024-12         1,900    2,406    4,306
+2025-01         1,935    2,640    4,575
+2025-02         2,137    2,856    4,993
+2025-03         2,567    3,125    5,692
+2025-04         2,558    3,016    5,574
+2025-05         3,059    2,991    6,050
+2025-06         3,925    3,063    6,988
+2025-07         4,870    3,499    8,369
+2025-08         3,468    3,061    6,529
+2025-09         3,281    3,137    6,418
+2025-10         3,149    3,406    6,555
+2025-11         3,165    3,156    6,321
+2025-12         2,992    3,164    6,156
+2026-01         3,639    3,590    7,229
+2026-02         4,312    3,847    8,159
+
+  -> Figure saved: results\matched_report_figures\monthly_trend.png
+
+Top 10 repos by total PRs:
+  getsentry/sentry                                    total: 2,500  agent: 1,566
+  BerriAI/litellm                                     total: 1,611  agent: 1,159
+  PostHog/posthog                                     total: 1,424  agent:   134
+  StarRocks/starrocks                                 total: 1,394  agent:   162
+  elastic/kibana                                      total: 1,375  agent:    73
+  grafana/loki                                        total: 1,101  agent:   918
+  microsoft/vscode                                    total: 1,052  agent:   468
+  promptfoo/promptfoo                                 total:   984  agent:   893
+  zed-industries/zed                                  total:   872  agent:   367
+  vllm-project/vllm                                   total:   859  agent:    19
