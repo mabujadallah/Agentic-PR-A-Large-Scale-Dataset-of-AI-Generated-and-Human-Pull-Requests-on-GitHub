@@ -28,6 +28,7 @@ Change size (median):
 
 PR description length (median words):  APR: 139   HPR: 82
   -> Figure saved: results\matched_report_figures\rq1_change_size.png
+  -> Figure saved: results\matched_report_figures\rq1_description_length.png
 
 ======================================================================
   RQ2: To what extent are Agent fix PRs rejected?
@@ -48,7 +49,10 @@ Merge rate by agent tool:
 Agent PRs — median time to merge: 1.42 hours
 
 Human PRs — median time to merge: 5.41 hours
+  -> Figure saved: results\matched_report_figures\rq2_time_to_merge.png
   -> Figure saved: results\matched_report_figures\rq2_merge_rate_by_agent.png
+
+  -> Figure saved: results\matched_report_figures\rq2_monthly_acceptance_rate.png
 
 ======================================================================
   RQ3: What proportion of fix PRs are accepted without revisions?
