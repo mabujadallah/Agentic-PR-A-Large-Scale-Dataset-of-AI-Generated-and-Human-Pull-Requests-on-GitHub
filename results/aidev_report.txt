@@ -1,0 +1,140 @@
+
+======================================================================
+  Dataset Overview (AIDev — Closed Fix PRs)
+======================================================================
+Data source        : AIDev dataset (hao-li/AIDev on Hugging Face)
+Date range         : 2024-12-24 to 2025-07-30
+Agents studied     : Copilot, Devin, Cursor, Claude_Code
+Total closed fix PRs : 23,845
+Repositories       : 739
+
+Per-agent fix PR counts:
+  Copilot                10,723
+  Devin                   6,882
+  Cursor                  5,022
+  Claude_Code             1,218
+
+======================================================================
+  Acceptance / Rejection Rates
+======================================================================
+Overall (4 agents combined):
+  Accepted (merged)      : 18,659 / 23,845 = 78.25%
+  Rejected (closed only) : 5,186 / 23,845 = 21.75%
+
+Per-agent breakdown:
+  Claude_Code            1,076 /  1,218 merged = 88.3% acceptance  (142 rejected = 11.7%)
+  Copilot                8,421 / 10,723 merged = 78.5% acceptance  (2,302 rejected = 21.5%)
+  Cursor                 4,546 /  5,022 merged = 90.5% acceptance  (476 rejected = 9.5%)
+  Devin                  4,616 /  6,882 merged = 67.1% acceptance  (2,266 rejected = 32.9%)
+
+  -> Figure saved: results\aidev_report_figures\acceptance_rejection_rate.png
+
+======================================================================
+  Table: Acceptance and Merge Time Statistics of Fix PRs
+======================================================================
+     Category #Accepted #Rejected #Total %Acceptance Median Time to Merge
+ All 4 Agents    18,659     5,186 23,845       78.3%                0.26h
+  Claude_Code     1,076       142  1,218       88.3%                0.19h
+      Copilot     8,421     2,302 10,723       78.5%                0.50h
+       Cursor     4,546       476  5,022       90.5%                0.02h
+        Devin     4,616     2,266  6,882       67.1%                0.19h
+
+======================================================================
+  Time to Merge
+======================================================================
+Merged fix PRs: 18,659
+Overall median time to merge: 0.26 hours
+
+Per-agent median time to merge:
+  Claude_Code           0.19 hours  (n=1,076)
+  Copilot               0.50 hours  (n=8,421)
+  Cursor                0.02 hours  (n=4,546)
+  Devin                 0.19 hours  (n=4,616)
+  -> Figure saved: results\aidev_report_figures\time_to_merge_by_agent.png
+
+======================================================================
+  Monthly Acceptance Rate
+======================================================================
+Monthly acceptance rate (all 4 agents):
+Month          Merged    Total     Rate
+----------------------------------------
+2024-12            79      129    61.2%
+2025-01           267      443    60.3%
+2025-02           514      849    60.5%
+2025-03           532    1,103    48.2%
+2025-04           965    1,351    71.4%
+2025-05         1,719    2,327    73.9%
+2025-06         3,820    4,881    78.3%
+2025-07        10,763   12,762    84.3%
+
+  -> Figure saved: results\aidev_report_figures\monthly_acceptance_rate.png
+  -> Figure saved: results\aidev_report_figures\monthly_acceptance_rate_per_agent.png
+
+======================================================================
+  Monthly Fix PR Volume
+======================================================================
+Month          Claude_Code       Copilot        Cursor         Devin         Total
+----------------------------------------------------------------------------------
+2024-12                  0             0             0           129           129
+2025-01                  0             0             0           443           443
+2025-02                  8             0             0           841           849
+2025-03                 42             1             0         1,060         1,103
+2025-04                  6             3             0         1,342         1,351
+2025-05                 90         1,005             7         1,225         2,327
+2025-06                287         3,160           443           991         4,881
+2025-07                785         6,554         4,572           851        12,762
+
+  -> Figure saved: results\aidev_report_figures\monthly_volume_by_agent.png
+
+======================================================================
+  Top 15 Repositories by Fix PRs
+======================================================================
+Repo                                                      Total   Merged     Rate
+--------------------------------------------------------------------------------
+  crewAIInc/crewAI                                          235       25    10.6%
+  microsoft/vscode                                           76       30    39.5%
+  liam-hq/liam                                               69       43    62.3%
+  calcom/cal.com                                             58       20    34.5%
+  novuhq/novu                                                49       45    91.8%
+  airbytehq/airbyte                                          47       27    57.4%
+  Cap-go/capgo                                               43        4     9.3%
+  onlook-dev/onlook                                          38       11    28.9%
+  mendableai/firecrawl                                       34       23    67.6%
+  dotnet/aspire                                              34       24    70.6%
+  lingodotdev/lingo.dev                                      33       28    84.8%
+  valkey-io/valkey-glide                                     31       17    54.8%
+  pdfme/pdfme                                                30       15    50.0%
+  antiwork/flexile                                           25       21    84.0%
+  celestiaorg/celestia-core                                  25       16    64.0%
+
+======================================================================
+  Consistency Check
+======================================================================
+Paper reports:
+  3,225 agent fix PRs, 1,497 rejected = 46.41% rejection
+
+Our computation from AIDev (same 4 agents, >100 star repos):
+  23,845 closed agent fix PRs
+  5,186 rejected = 21.75% rejection
+  18,659 accepted = 78.25% acceptance
+
+Note: Small differences are expected due to:
+  - AIDev dataset snapshot timing
+  - Minor differences in fix classification regex
+  - The paper may have applied additional filters
+
+======================================================================
+  All 5 Agents (including OpenAI Codex)
+======================================================================
+Total closed fix PRs (all 5 agents): 207,192
+
+Per-agent acceptance:
+  Claude_Code              1,076 /    1,218 merged = 88.3%  (rejected: 142 = 11.7%)
+  Copilot                  8,421 /   10,723 merged = 78.5%  (rejected: 2,302 = 21.5%)
+  Cursor                   4,546 /    5,022 merged = 90.5%  (rejected: 476 = 9.5%)
+  Devin                    4,616 /    6,882 merged = 67.1%  (rejected: 2,266 = 32.9%)
+  OpenAI_Codex           173,399 /  183,347 merged = 94.6%  (rejected: 9,948 = 5.4%)
+
+  TOTAL                  192,058 /  207,192 merged = 92.7%  (rejected: 15,134 = 7.3%)
+
+  -> Figure saved: results\aidev_report_figures\acceptance_rate_all_5_agents.png

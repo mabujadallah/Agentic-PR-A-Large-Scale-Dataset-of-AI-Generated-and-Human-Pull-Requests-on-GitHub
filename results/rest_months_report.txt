@@ -1,0 +1,122 @@
+
+======================================================================
+  Dataset Overview (Own Data — Closed Fix PRs, Rest Months)
+======================================================================
+Data source             : mabujadallah/GitHub-Agentic-PR-Dataset (re-collected)
+AIDev max date          : 2025-07-30 19:39:22+00:00
+Rest months date range  : 2025-07-30 19:39:39+00:00 to 2026-02-28 23:29:38+00:00
+Agents studied          : Copilot, Devin, Cursor, Claude_Code
+Total closed fix PRs    : 24,205
+Repositories            : 911
+
+Per-agent fix PR counts:
+  Cursor                  9,739
+  Claude_Code             7,627
+  Copilot                 5,924
+  Devin                     915
+
+======================================================================
+  Acceptance / Rejection Rates
+======================================================================
+Overall (4 agents combined):
+  Accepted (merged)      : 19,631 / 24,205 = 81.10%
+  Rejected (closed only) : 4,574 / 24,205 = 18.90%
+
+Per-agent breakdown:
+  Claude_Code            6,653 /  7,627 merged = 87.2% acceptance  (974 rejected = 12.8%)
+  Copilot                3,883 /  5,924 merged = 65.5% acceptance  (2,041 rejected = 34.5%)
+  Cursor                 8,564 /  9,739 merged = 87.9% acceptance  (1,175 rejected = 12.1%)
+  Devin                    531 /    915 merged = 58.0% acceptance  (384 rejected = 42.0%)
+
+  -> Figure saved: results\rest_months_report_figures\acceptance_rejection_rate.png
+
+======================================================================
+  Table: Acceptance and Merge Time Statistics of Fix PRs
+======================================================================
+     Category #Accepted #Rejected #Total %Acceptance Median Time to Merge
+ All 4 Agents    19,631     4,574 24,205       81.1%                1.61h
+  Claude_Code     6,653       974  7,627       87.2%                1.39h
+      Copilot     3,883     2,041  5,924       65.5%                9.82h
+       Cursor     8,564     1,175  9,739       87.9%                0.88h
+        Devin       531       384    915       58.0%                2.65h
+
+======================================================================
+  Time to Merge
+======================================================================
+Merged fix PRs: 19,631
+Overall median time to merge: 1.61 hours
+
+Per-agent median time to merge:
+  Claude_Code           1.39 hours  (n=6,653)
+  Copilot               9.82 hours  (n=3,883)
+  Cursor                0.88 hours  (n=8,564)
+  Devin                 2.65 hours  (n=531)
+  -> Figure saved: results\rest_months_report_figures\time_to_merge_by_agent.png
+
+======================================================================
+  Monthly Acceptance Rate
+======================================================================
+Monthly acceptance rate (all 4 agents, rest months):
+Month          Merged    Total     Rate
+----------------------------------------
+2025-07           170      199    85.4%
+2025-08         2,686    3,468    77.5%
+2025-09         2,669    3,281    81.3%
+2025-10         2,566    3,149    81.5%
+2025-11         2,493    3,165    78.8%
+2025-12         2,503    2,992    83.7%
+2026-01         2,978    3,639    81.8%
+2026-02         3,566    4,312    82.7%
+
+  -> Figure saved: results\rest_months_report_figures\monthly_acceptance_rate.png
+  -> Figure saved: results\rest_months_report_figures\monthly_acceptance_rate_per_agent.png
+
+======================================================================
+  Monthly Fix PR Volume
+======================================================================
+Month          Claude_Code       Copilot        Cursor         Devin         Total
+----------------------------------------------------------------------------------
+2025-07                 79            35            79             6           199
+2025-08              1,130           759         1,483            96         3,468
+2025-09              1,168           578         1,464            71         3,281
+2025-10              1,016           743         1,280           110         3,149
+2025-11                949           904         1,230            82         3,165
+2025-12                994           728         1,133           137         2,992
+2026-01                938         1,067         1,417           217         3,639
+2026-02              1,353         1,110         1,653           196         4,312
+
+  -> Figure saved: results\rest_months_report_figures\monthly_volume_by_agent.png
+
+======================================================================
+  Top 15 Repositories by Fix PRs
+======================================================================
+Repo                                                      Total   Merged     Rate
+--------------------------------------------------------------------------------
+  getsentry/sentry                                          713      590    82.7%
+  promptfoo/promptfoo                                       567      522    92.1%
+  BerriAI/litellm                                           412      347    84.2%
+  freenet/freenet-core                                      405      357    88.1%
+  novuhq/novu                                               380      356    93.7%
+  microsoft/vscode                                          367      154    42.0%
+  langfuse/langfuse                                         360      344    95.6%
+  jdx/mise                                                  313      301    96.2%
+  PrefectHQ/prefect                                         303      254    83.8%
+  sst/opencode                                              299      248    82.9%
+  tphakala/birdnet-go                                       297      285    96.0%
+  mlflow/mlflow                                             293      257    87.7%
+  dotnet/runtime                                            290      220    75.9%
+  elie222/inbox-zero                                        277      264    95.3%
+  vercel/turborepo                                          269      245    91.1%
+
+======================================================================
+  Comparison: AIDev Months vs Rest Months (Own Data)
+======================================================================
+Agent                  AIDev-Mo #   AIDev-Mo %Acc    Rest-Mo #    Rest-Mo %Acc     Diff
+-------------------------------------------------------------------------------------
+  Claude_Code               9,073           84.9%        7,627           87.2%    +2.3pp
+  Copilot                   2,031           57.9%        5,924           65.5%    +7.6pp
+  Cursor                   10,378           90.8%        9,739           87.9%    -2.9pp
+  Devin                     1,270           41.7%          915           58.0%   +16.3pp
+  ALL 4 AGENTS             22,752           82.8%       24,205           81.1%    -1.7pp
+
+  -> Figure saved: results\rest_months_report_figures\aidev_months_vs_rest_months.png
