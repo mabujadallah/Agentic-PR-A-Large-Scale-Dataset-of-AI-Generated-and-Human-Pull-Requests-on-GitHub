@@ -30,15 +30,22 @@ A large-scale dataset of AI-generated and human pull requests collected from Git
 
 ```
 ├── collector.py                 # Multi-phase PR & commit data collection
+├── collect_missing.py           # Incrementally collect missing agent PRs from uncovered repos
 ├── classify_fix_prs.py          # Classify PRs as fix/other via regex
+├── hybrid_classify.py           # Classify PR commits by type using Copilot CLI
 ├── export_aidev_repos.py        # Export repository metadata from AIDev dataset
+├── calculate_overlap.py         # Calculate overlap metrics between local and remote datasets
+├── compare.py                   # Compare datasets and generate CSV breakdowns & summaries
 ├── generate_report.py           # Generate statistical reports & figures
 ├── generate_report.ipynb        # Interactive report (full sample)
 ├── generate_report_matched.ipynb# Interactive report (matched sample)
+├── dataset_comparison_results.ipynb  # Statistical comparison between our dataset and AIDev
+├── dataset_overlap_analysis.ipynb    # Dataset overlap analysis with intersection/union metrics
 ├── aidev_acceptance_rate.ipynb   # Acceptance rate analysis on AIDev data
 ├── own_data_acceptance_rate.ipynb# Acceptance rate analysis on own data (Dec 2024 – Jul 2025)
 ├── rest_months_acceptance_rate.ipynb # Acceptance rate analysis (Aug 2025 – Feb 2026)
 ├── aidev_repositories.csv       # Repository metadata lookup table
+├── .env.example                 # Template for environment variables
 ├── requirements.txt             # Python dependencies
 ├── results/                     # Generated reports and figures
 │   ├── report.txt               # Full-sample report
@@ -72,7 +79,11 @@ A large-scale dataset of AI-generated and human pull requests collected from Git
    pip install -r requirements.txt
    ```
 
-3. Configure environment variables by creating a `.env` file in the project root:
+3. Configure environment variables by copying the example file and editing it:
+   ```bash
+   cp .env.example .env
+   ```
+   Then fill in your tokens:
    ```
    GITHUB_TOKENS=ghp_YOUR_TOKEN_1,ghp_YOUR_TOKEN_2
    ```
@@ -109,7 +120,15 @@ Runs a multi-phase pipeline that automatically discovers repositories from the [
 
 Checkpoints are saved as `checkpoint_*.json` files. If the process is interrupted, re-running the script resumes from the last checkpoint.
 
-### 2. PR Classification
+### 2. Collect Missing Repositories
+
+```bash
+python collect_missing.py
+```
+
+Incrementally collects missing agent PRs from repositories not yet covered in the dataset by comparing against the AIDev baseline and prioritizing by agent-PR count.
+
+### 3. PR Classification
 
 ```bash
 python classify_fix_prs.py
@@ -123,7 +142,15 @@ Classifies PRs as "fix" or "other" using regex matching on PR titles (convention
 - `fix_pr_commits.parquet` — Commits for fix PRs
 - `fix_pr_commit_details.parquet` — Commit details for fix PRs
 
-### 3. Repository Metadata Export
+### 4. Hybrid Classification
+
+```bash
+python hybrid_classify.py
+```
+
+Classifies PR commits by type using the Copilot CLI command with token limits, retry logic, and generates formatted classification reports.
+
+### 5. Repository Metadata Export
 
 ```bash
 python export_aidev_repos.py
@@ -131,7 +158,24 @@ python export_aidev_repos.py
 
 Creates `aidev_repositories.csv` with normalized repository metadata (repo ID, name, PR count, language, stars, forks, license).
 
-### 4. Report Generation
+### 6. Dataset Comparison & Overlap
+
+```bash
+python calculate_overlap.py
+python compare.py
+```
+
+- `calculate_overlap.py` — Loads local and remote PR datasets, calculates overlap metrics, and sends comparison results via Telegram.
+- `compare.py` — Compares three PR datasets and generates CSV breakdowns (per-repo, status summary, monthly trends) with Telegram integration.
+
+Or run the Jupyter notebooks interactively:
+
+| Notebook | Analysis Scope |
+|----------|---------------|
+| `dataset_comparison_results.ipynb` | Statistical and visual comparison between our dataset and AIDev |
+| `dataset_overlap_analysis.ipynb` | Overlap analysis with intersection/union metrics and visualizations |
+
+### 7. Report Generation
 
 Generate the statistical analysis report:
 
