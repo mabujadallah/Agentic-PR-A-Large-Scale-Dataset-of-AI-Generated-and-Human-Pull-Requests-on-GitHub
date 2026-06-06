@@ -36,9 +36,15 @@ A large-scale dataset of AI-generated and human pull requests collected from Git
 ├── export_aidev_repos.py        # Export repository metadata from AIDev dataset
 ├── calculate_overlap.py         # Calculate overlap metrics between local and remote datasets
 ├── compare.py                   # Compare datasets and generate CSV breakdowns & summaries
+├── analysis_utils.py            # Shared helpers: data loaders, stats, plot style, constants
 ├── generate_report.py           # Generate statistical reports & figures
+├── generate_notebooks.py        # Programmatically generate / refresh analysis notebooks
+├── findings_temporal.py         # Temporal trend computations & export to Excel/CSV
 ├── generate_report.ipynb        # Interactive report (full sample)
 ├── generate_report_matched.ipynb# Interactive report (matched sample)
+├── theme1_adoption_trends.ipynb # RQ1 & RQ7: AI bug-fix volume and agent market share over time
+├── theme2_quality_over_time.ipynb# RQ2–RQ5: Acceptance rate, time-to-merge, patch size, revisions
+├── theme3_agent_comparison.ipynb# RQ6 & RQ8: Per-agent benchmarking & pre/post-AIDev comparison
 ├── dataset_comparison_results.ipynb  # Statistical comparison between our dataset and AIDev
 ├── dataset_overlap_analysis.ipynb    # Dataset overlap analysis with intersection/union metrics
 ├── aidev_acceptance_rate.ipynb   # Acceptance rate analysis on AIDev data
@@ -53,11 +59,19 @@ A large-scale dataset of AI-generated and human pull requests collected from Git
 │   ├── aidev_report.txt         # AIDev baseline report
 │   ├── own_data_report.txt      # Own data (AIDev date range) report
 │   ├── rest_months_report.txt   # Remaining months report
+│   ├── temporal_volume.csv      # Monthly PR volume (agent vs human)
+│   ├── temporal_merge_rate.csv  # Monthly merge rates
+│   ├── temporal_time_to_merge.csv # Monthly time-to-merge
+│   ├── temporal_agent_share.csv # Monthly agent market share
+│   ├── temporal_desc_words.csv  # Monthly description word counts
 │   ├── report_figures/          # Plots for full-sample analysis
 │   ├── matched_report_figures/  # Plots for matched-sample analysis
 │   ├── aidev_report_figures/    # Plots for AIDev analysis
 │   ├── own_data_report_figures/ # Plots for own data analysis
-│   └── rest_months_report_figures/ # Plots for remaining months analysis
+│   ├── rest_months_report_figures/ # Plots for remaining months analysis
+│   ├── temporal_figures/        # Temporal trend plots (volume, merge rate, TTM, agent share)
+│   ├── theme1_figures/          # Plots for Theme 1 (adoption trends)
+│   └── theme2_figures/          # Plots for Theme 2 (quality over time)
 └── LICENSE                      # CC BY 4.0
 ```
 
@@ -193,13 +207,35 @@ Or run the Jupyter notebooks interactively for different analysis subsets:
 | `own_data_acceptance_rate.ipynb` | Own collection, AIDev date range (Dec 2024 – Jul 2025) |
 | `rest_months_acceptance_rate.ipynb` | Own collection, remaining months (Aug 2025 – Feb 2026) |
 
+### 8. Temporal & Thematic Analysis
+
+Three themed notebooks cover the longitudinal research questions across the full 15-month window:
+
+| Notebook | Theme | Research Questions |
+|----------|-------|--------------------|
+| `theme1_adoption_trends.ipynb` | Bug-Fix Adoption Trends | RQ1, RQ7 |
+| `theme2_quality_over_time.ipynb` | Bug-Fix Quality Over Time | RQ2, RQ3, RQ4, RQ5 |
+| `theme3_agent_comparison.ipynb` | Agent Comparison & Temporal Benchmarking | RQ6, RQ8 |
+
+Shared utilities are in `analysis_utils.py`. Pre-computed monthly CSVs are exported by `findings_temporal.py` and saved in `results/temporal_*/`.
+
 ## Research Questions
 
-The analysis addresses three research questions:
+The analysis addresses eight research questions across three themes:
 
-- **RQ1**: How do agent fix PRs differ from human fix PRs in change size? *(Files changed, lines added/deleted, description length)*
-- **RQ2**: To what extent are agent-generated PRs rejected compared to human PRs? *(Merge rates, per-agent breakdown, Chi-squared test)*
-- **RQ3**: What proportion of agent PRs are accepted without revisions? *(Revision commit counts, Mann-Whitney U test)*
+**Theme 1 — Adoption Trends**
+- **RQ1**: How does AI bug-fixing *volume* change over time? *(Monthly PR counts, agent vs. human)*
+- **RQ7**: Do developers *switch agents* for bug fixing over time? *(Agent market share per month)*
+
+**Theme 2 — Quality Over Time**
+- **RQ2**: How does bug-fix *acceptance rate* change over time? *(Monthly merge rates, Chi-squared test)*
+- **RQ3**: How does *time to merge* change over time? *(Median hours from open to merge, Mann-Whitney U)*
+- **RQ4**: How does *patch size* change over time? *(Files changed, lines added/deleted per month)*
+- **RQ5**: How does *revision burden* change over time? *(Revision commit counts, revision rate)*
+
+**Theme 3 — Agent Comparison**
+- **RQ6**: Which AI agent is *best at bug fixing*? *(Merge rate, TTM, patch size, revision rate per agent)*
+- **RQ8**: How does performance compare *before and after the AIDev cutoff*? *(Dec 2024–Jul 2025 vs. Aug 2025–Feb 2026)*
 
 ## License
 
